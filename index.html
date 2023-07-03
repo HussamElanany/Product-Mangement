@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="system.css">
+
+    <style>
+        .home-nav {
+            text-decoration: underline;
+        }
+    </style>
+    <title>System</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a class="home-nav" href="system.html">All Products</a></li>
+            <li><a href="sold-product.html">Sold Products</a></li>
+            <li><a href="category.html">Category 1</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <div class="container">
+        <div class="head">
+            <h3> Product System Managment</h3>
+        </div>
+        <div class="inputs">
+            <input type="text" id="title" placeholder="Title">
+
+            <!-- pricing starts here -->
+            <div class="price">
+                <input onkeyup="getTotal()" type="number" id="price" placeholder="Price">
+
+                <input onkeyup="getTotal()" type="number" id="taxes" placeholder="taxes">
+
+                <input onkeyup="getTotal()" type="number" id="discount" placeholder="discount">
+
+                <small id="total">0</small>
+            </div>
+
+            <input type="number" placeholder="Count" id="count">
+            <!--<input type="text" placeholder="Category" id="category"> -->
+
+            <select name="Categories" id="category">
+                <option value="Category 1">Category 1</option>
+                <option value="Category 2">Category 2</option>
+                <option value="Category 3">Category 3</option>
+                <option value="Category 4">Category 4</option>
+            </select>
+
+            <select name="vendors" id="vendors">
+                <option value="Person 1">Person 1</option>
+                <option value="Person 2">Person 2</option>
+                <option value="Person 3">Person 3</option>
+                <option value="Person 4">Person 4</option>
+            </select>
+
+            <button id="submit">Create</button>
+        </div>
+
+        <!-- Outputs start here  -->
+        <div class="outputs">
+            <div class="search-container">
+                <input type="text" id="search" onkeyup="searchData(this.value)" placeholder="Search">
+                <button onclick="getSearchMood(this.id)" id="search-btn" class="btn-search">Search</button>
+            </div>
+            <div id="delete-all">
+
+            </div>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Taxes</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Category</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody id="tbody">
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
