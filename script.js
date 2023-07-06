@@ -131,6 +131,26 @@ function showData() {
 showData()
 
 
+// Sell Product
+
+let soldProductData;
+function sellItem(i) {
+    soldProductData = dataProduct.splice(i, 1)
+    soldProductpage.push({ data: soldProductData })
+
+    console.log(soldProductpage);
+    // Save soldProductpage in local storage
+    localStorage.setItem('soldProduct', JSON.stringify(soldProductpage))
+
+    //dataProduct.splice(i, 1)
+    localStorage.product = JSON.stringify(dataProduct)
+
+    showData()
+    console.log(soldProductpage);
+}
+
+
+
 // Delete All
 
 function deleteAll() {
