@@ -34,6 +34,20 @@ if (localStorage.product != null) {
     dataProduct = []
 }
 
+let dataProduct2;
+if (localStorage.product2 != null) {
+    dataProduct2 = JSON.parse(localStorage.product2)
+} else {
+    dataProduct2 = []
+}
+
+let dataProduct3;
+if (localStorage.product3 != null) {
+    dataProduct3 = JSON.parse(localStorage.product3)
+} else {
+    dataProduct3 = []
+}
+
 submit.onclick = function () {
     let dateFunc = new Date()
     let date = dateFunc.toString()
@@ -53,29 +67,70 @@ submit.onclick = function () {
 
     //Clean data
     if (title.value != '' && price.value != '' && category.value != '') {
-        //Update
-        if (mood === 'create') {
-            //count
-            if (newProduct.count > 1) {
-                for (let i = 0; i < newProduct.count; i++) {
+        // category intent
+        if (newProduct.category == 'Category 1') {
+            //Update
+            if (mood === 'create') {
+                //count
+                if (newProduct.count > 1) {
+                    for (let i = 0; i < newProduct.count; i++) {
+                        dataProduct.push(newProduct)
+                    }
+                } else {
                     dataProduct.push(newProduct)
                 }
             } else {
-                dataProduct.push(newProduct)
+                dataProduct[temp] = newProduct;
+                mood = 'create'
+                submit.innerHTML = 'Create'
+                count.style.display = 'block'
             }
-        } else {
-            dataProduct[temp] = newProduct;
-            mood = 'create'
-            submit.innerHTML = 'Create'
-            count.style.display = 'block'
+
+
+        } else if (newProduct.category == 'Category 2') {
+            //Update
+            if (mood === 'create') {
+                //count
+                if (newProduct.count > 1) {
+                    for (let i = 0; i < newProduct.count; i++) {
+                        dataProduct2.push(newProduct)
+                    }
+                } else {
+                    dataProduct2.push(newProduct)
+                }
+            } else {
+                dataProduct2[temp] = newProduct;
+                mood = 'create'
+                submit.innerHTML = 'Create'
+                count.style.display = 'block'
+            }
         }
-
-
-    } else {
-        alert('pleas fill the form')
+        else if (newProduct.category == 'Category 3') {
+            //Update
+            if (mood === 'create') {
+                //count
+                if (newProduct.count > 1) {
+                    for (let i = 0; i < newProduct.count; i++) {
+                        dataProduct3.push(newProduct)
+                    }
+                } else {
+                    dataProduct3.push(newProduct)
+                }
+            } else {
+                dataProduct3[temp] = newProduct;
+                mood = 'create'
+                submit.innerHTML = 'Create'
+                count.style.display = 'block'
+            }
+        }
+        else {
+            alert('pleas fill the form')
+        }
     }
 
     localStorage.setItem('product', JSON.stringify(dataProduct))
+    localStorage.setItem('product2', JSON.stringify(dataProduct2))
+    localStorage.setItem('product3', JSON.stringify(dataProduct3))
     showData()
     clearData()
 }
@@ -118,11 +173,60 @@ function showData() {
     tbody.innerHTML = table
 
 
+    //category 2
+    let tableCat2 = '';
+    dataProduct2.forEach((product, i) => {
+        tableCat2 += `
+                <tr>
+                <td>${i + 1}</td>
+                <td>${product.title}</td>
+                <td>${product.price}</td>
+                <td>${product.taxes}</td>
+                <td>${product.discount}</td>
+                <td>${product.total}</td>
+                <td>${product.category}</td>
+                <td><button onclick='
+                updateData(${i})
+                ' id="update">Update</button></td>
+                <td><button onclick="
+                sellItem(${i})
+                " id="delete">Sell</button></td>
+            </tr>`
+
+    })
+    let tbodyCat2 = document.querySelector('#tbody-cat2')
+    tbodyCat2.innerHTML = tableCat2
+
+    //category 3
+    let tableCat3 = '';
+    dataProduct3.forEach((product, i) => {
+        tableCat3 += `
+                <tr>
+                <td>${i + 1}</td>
+                <td>${product.title}</td>
+                <td>${product.price}</td>
+                <td>${product.taxes}</td>
+                <td>${product.discount}</td>
+                <td>${product.total}</td>
+                <td>${product.category}</td>
+                <td><button onclick='
+                updateData(${i})
+                ' id="update">Update</button></td>
+                <td><button onclick="
+                sellItem(${i})
+                " id="delete">Sell</button></td>
+            </tr>`
+
+    })
+    let tbodyCat3 = document.querySelector('#tbody-cat3')
+    tbodyCat3.innerHTML = tableCat3
+
+
     //show delete all btn
     let deleteAllDiv = document.querySelector('#delete-all')
     if (dataProduct.length > 0) {
         deleteAllDiv.innerHTML = `
-     <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct.length})</button>
+     <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct2.length + dataProduct.length})</button>
      `
     } else {
         deleteAllDiv.innerHTML = ''
@@ -134,6 +238,7 @@ showData()
 // Sell Product
 
 let soldProductData;
+
 function sellItem(i) {
     soldProductData = dataProduct.splice(i, 1)
     soldProductpage.push({ data: soldProductData })
@@ -177,7 +282,42 @@ function updateData(i) {
         top: 0,
         behavior: "smooth"
     })
+}
 
+// Update Category 2
+function updateData(i) {
+    title.value = dataProduct2[i].title
+    price.value = dataProduct2[i].price
+    taxes.value = dataProduct2[i].taxes
+    discount.value = dataProduct2[i].discount
+    getTotal()
+    count.style.display = 'none'
+    category.value = dataProduct2[i].category;
+    submit.innerHTML = 'Update'
+    mood = 'update'
+    temp = i;
+    scroll({
+        top: 0,
+        behavior: "smooth"
+    })
+}
+
+// Update Category 3
+function updateData(i) {
+    title.value = dataProduct3[i].title
+    price.value = dataProduct3[i].price
+    taxes.value = dataProduct3[i].taxes
+    discount.value = dataProduct3[i].discount
+    getTotal()
+    count.style.display = 'none'
+    category.value = dataProduct3[i].category;
+    submit.innerHTML = 'Update'
+    mood = 'update'
+    temp = i;
+    scroll({
+        top: 0,
+        behavior: "smooth"
+    })
 }
 
 

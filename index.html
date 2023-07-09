@@ -18,13 +18,22 @@
 
 <body>
     <nav>
+        <div class="logo">Standard</div>
         <ul>
             <li><a class="home-nav" href="system.html">All Products</a></li>
             <li><a href="sold-product-page.html">Sold Products</a></li>
-            <li><a href="category.html">Category 1</a></li>
+
+            <div class="dropdown">
+                <button class="dropbtn">Categories</button>
+                <div class="dropdown-content">
+                    <a href="#tbody">Category 1</a>
+                    <a href="#tbody-cat2">Category 2</a>
+                    <a href="#tbody-cat3">Category 3</a>
+                </div>
+            </div>
         </ul>
     </nav>
-    <hr>
+    <hr class="nav-line">
     <div class="container">
         <div class="head">
             <h3> Product System Managment</h3>
@@ -72,6 +81,7 @@
             <div id="delete-all">
 
             </div>
+            <h4> Category 1</h4>
             <table>
                 <tr>
                     <th>Id</th>
@@ -85,6 +95,48 @@
                     <th>Delete</th>
                 </tr>
                 <tbody id="tbody">
+
+
+                </tbody>
+            </table>
+
+            <!-- Category 2 -->
+            <hr>
+            <h4> Category 2</h4>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Taxes</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Category</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody id="tbody-cat2">
+
+
+                </tbody>
+            </table>
+
+            <!-- Category 3 -->
+            <hr>
+            <h4> Category 3</h4>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Taxes</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Category</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody id="tbody-cat3">
 
 
                 </tbody>

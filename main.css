@@ -23,18 +23,76 @@ a:hover {
 
 nav {
     padding: 20px 0 30px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+    padding-left: 30px;
 }
 
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    text-align: right;
+    padding-right: 30px;
 }
 
 li {
     display: inline-block;
     margin-right: 20px;
     cursor: pointer;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    margin-right: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    text-align: center;
+    color: black;
+    padding: 12px 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: lightcoral;
+}
+
+.nav-line {
+    width: 70%;
+    margin: 0 auto;
 }
 
 .container {
@@ -109,10 +167,16 @@ button:hover {
 
 }
 
+h4 {
+    font-size: 19px;
+    text-align: center;
+    margin: 10px 0;
+}
+
 table {
     width: 100%;
     text-align: center;
-    margin: 10px 0;
+    margin: 30px 0;
 }
 
 table th {
