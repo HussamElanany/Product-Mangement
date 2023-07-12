@@ -31,6 +31,7 @@ nav {
     font-weight: bold;
     font-size: 24px;
     padding-left: 30px;
+    cursor: pointer;
 }
 
 nav ul {
@@ -187,4 +188,9 @@ th,
 td {
     text-transform: capitalize;
     padding: 5px;
+}
+
+.sold-pro-line {
+    width: 50%;
+    margin: 0 auto;
 }

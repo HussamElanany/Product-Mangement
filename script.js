@@ -189,7 +189,7 @@ function showData() {
                 updateData(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
-                sellItem(${i})
+                sellItem2(${i})
                 " id="delete">Sell</button></td>
             </tr>`
 
@@ -213,7 +213,7 @@ function showData() {
                 updateData(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
-                sellItem(${i})
+                sellItem3(${i})
                 " id="delete">Sell</button></td>
             </tr>`
 
@@ -226,7 +226,7 @@ function showData() {
     let deleteAllDiv = document.querySelector('#delete-all')
     if (dataProduct.length > 0) {
         deleteAllDiv.innerHTML = `
-     <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct2.length + dataProduct.length})</button>
+     <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct.length + dataProduct2.length + dataProduct3.length})</button>
      `
     } else {
         deleteAllDiv.innerHTML = ''
@@ -238,10 +238,21 @@ showData()
 // Sell Product
 
 let soldProductData;
+let soldProductData2;
+let soldProductData3;
+
 
 function sellItem(i) {
+
+    let dateFunc = new Date()
+    let date = dateFunc.toString()
+    getDate = date.slice(0, 25)
+
     soldProductData = dataProduct.splice(i, 1)
-    soldProductpage.push({ data: soldProductData })
+    soldProductpage.push({
+        data: soldProductData,
+        getDate: getDate
+    })
 
     console.log(soldProductpage);
     // Save soldProductpage in local storage
@@ -252,6 +263,51 @@ function sellItem(i) {
 
     showData()
     console.log(soldProductpage);
+}
+
+function sellItem2(i) {
+
+    let dateFunc = new Date()
+    let date = dateFunc.toString()
+    getDate = date.slice(0, 25)
+
+    soldProductData2 = dataProduct2.splice(i, 1)
+    soldProductpage2.push({
+        data: soldProductData2,
+        getDate: getDate
+    })
+
+    console.log(soldProductpage2);
+    // Save soldProductpage in local storage
+    localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
+
+    //dataProduct.splice(i, 1)
+    localStorage.product2 = JSON.stringify(dataProduct2)
+
+    showData()
+    console.log(soldProductpage2);
+}
+function sellItem3(i) {
+
+    let dateFunc = new Date()
+    let date = dateFunc.toString()
+    getDate = date.slice(0, 25)
+
+    soldProductData3 = dataProduct3.splice(i, 1)
+    soldProductpage3.push({
+        data: soldProductData3,
+        getDate: getDate
+    })
+
+    console.log(soldProductpage3);
+    // Save soldProductpage in local storage
+    localStorage.setItem('soldProduct3', JSON.stringify(soldProductpage3))
+
+    //dataProduct.splice(i, 1)
+    localStorage.product3 = JSON.stringify(dataProduct3)
+
+    showData()
+    console.log(soldProductpage3);
 }
 
 
