@@ -36,10 +36,10 @@ function showSoldProductData() {
             <td>${i + 1}</td>
             <td>${soldProductpage[i].data[0].title}</td>
             <td>${soldProductpage[i].data[0].price}</td>
-            <td>${soldProductpage[i].data[0].taxes}</td>
-            <td>${soldProductpage[i].data[0].discount}</td>
             <td>${soldProductpage[i].data[0].total}</td>
             <td>${soldProductpage[i].data[0].category}</td>
+            <td>${soldProductpage[i].firstName} ${soldProductpage[i].lastName}</td>
+            <td>${soldProductpage[i].phoneNum}</td>
             <td>${soldProductpage[i].getDate}</td>
             <td><button onclick="
             deleteItem(${i})

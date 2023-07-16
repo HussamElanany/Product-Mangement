@@ -152,6 +152,7 @@ function showData() {
     let table = '';
     dataProduct.forEach((product, i) => {
         table += `
+        <tr class="tr-container"><tr/>
                 <tr>
                 <td>${i + 1}</td>
                 <td>${product.title}</td>
@@ -164,9 +165,10 @@ function showData() {
                 updateData(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
-                sellItem(${i})
+                sellTo(${i})
                 " id="delete">Sell</button></td>
-            </tr>`
+            </tr>
+            `
 
     })
     let tbody = document.querySelector('#tbody')
@@ -186,7 +188,7 @@ function showData() {
                 <td>${product.total}</td>
                 <td>${product.category}</td>
                 <td><button onclick='
-                updateData(${i})
+                updateData2(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
                 sellItem2(${i})
@@ -210,7 +212,7 @@ function showData() {
                 <td>${product.total}</td>
                 <td>${product.category}</td>
                 <td><button onclick='
-                updateData(${i})
+                updateData3(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
                 sellItem3(${i})
@@ -241,6 +243,36 @@ let soldProductData;
 let soldProductData2;
 let soldProductData3;
 
+let custFirstName;
+let custLasttName;
+let custPhoneNum;
+
+
+function sellTo(i) {
+    let trContaienr = document.querySelectorAll('.tr-container')[i]
+    // const newDiv = document.createElement("tr");
+    // newDiv.className = 'new-div'
+    trContaienr.innerHTML = `
+    <td colspan="2"><input class='first-name' type="text" placeholder='First name'></td>
+     <td colspan="2"> <input class='last-name' type="text" placeholder='Last name'></td>
+    <td colspan="2"> <input class='phone-num' type="text" placeholder='Phone number '></td>
+    <td></td>
+    <td colspan="2"> <button onclick='
+    sellItem(${i})
+    '>Sell Product</button></td>`
+
+    // console.log(custFirstName.value);
+    // trContaienr.appendChild(newDiv)
+    console.log(trContaienr);
+}
+
+
+
+
+
+
+
+
 
 function sellItem(i) {
 
@@ -248,10 +280,20 @@ function sellItem(i) {
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
 
+    custFirstName = document.querySelector('.first-name')
+    custLasttName = document.querySelector('.last-name')
+    custPhoneNum = document.querySelector('.phone-num')
+    console.log(custPhoneNum.value);
+
+
     soldProductData = dataProduct.splice(i, 1)
     soldProductpage.push({
         data: soldProductData,
-        getDate: getDate
+        getDate: getDate,
+        firstName: custFirstName.value,
+        lastName: custLasttName.value,
+        phoneNum: custPhoneNum.value
+
     })
 
     console.log(soldProductpage);
@@ -262,7 +304,7 @@ function sellItem(i) {
     localStorage.product = JSON.stringify(dataProduct)
 
     showData()
-    console.log(soldProductpage);
+    // console.log(soldProductpage);
 }
 
 function sellItem2(i) {
@@ -341,7 +383,7 @@ function updateData(i) {
 }
 
 // Update Category 2
-function updateData(i) {
+function updateData2(i) {
     title.value = dataProduct2[i].title
     price.value = dataProduct2[i].price
     taxes.value = dataProduct2[i].taxes
@@ -359,7 +401,7 @@ function updateData(i) {
 }
 
 // Update Category 3
-function updateData(i) {
+function updateData3(i) {
     title.value = dataProduct3[i].title
     price.value = dataProduct3[i].price
     taxes.value = dataProduct3[i].taxes
@@ -415,4 +457,58 @@ function searchData(value) {
     }
     let tbody = document.querySelector('#tbody')
     tbody.innerHTML = table
+
+    let table2 = '';
+    for (let i = 0; i < dataProduct2.length; i++) {
+
+        if (dataProduct2[i].title.toLowerCase().includes(value) || dataProduct2[i].title.includes(value)) {
+            table2 += `
+            <tr>
+            <td>${i + 1}</td>
+            <td>${dataProduct2[i].title}</td>
+            <td>${dataProduct2[i].price}</td>
+            <td>${dataProduct2[i].taxes}</td>
+            <td>${dataProduct2[i].discount}</td>
+            <td>${dataProduct2[i].total}</td>
+            <td>${dataProduct2[i].category}</td>
+            <td><button onclick='
+            updateData(${i})
+            ' id="update">Update</button></td>
+            <td><button onclick="
+            sellItem3(${i})
+            " id="delete">Delete</button></td>
+        </tr>`;
+            // console.log(dataProduct[i].title);
+        }
+
+    }
+    let tbodyCat2 = document.querySelector('#tbody-cat2')
+    tbodyCat2.innerHTML = table2
+
+    let table3 = '';
+    for (let i = 0; i < dataProduct3.length; i++) {
+
+        if (dataProduct3[i].title.toLowerCase().includes(value) || dataProduct3[i].title.includes(value)) {
+            table3 += `
+            <tr>
+            <td>${i + 1}</td>
+            <td>${dataProduct3[i].title}</td>
+            <td>${dataProduct3[i].price}</td>
+            <td>${dataProduct3[i].taxes}</td>
+            <td>${dataProduct3[i].discount}</td>
+            <td>${dataProduct3[i].total}</td>
+            <td>${dataProduct3[i].category}</td>
+            <td><button onclick='
+            updateData(${i})
+            ' id="update">Update</button></td>
+            <td><button onclick="
+            deleteTest(${i})
+            " id="delete">Delete</button></td>
+        </tr>`;
+            // console.log(dataProduct[i].title);
+        }
+
+    }
+    let tbodyCat3 = document.querySelector('#tbody-cat3')
+    tbodyCat3.innerHTML = table3
 }

@@ -194,3 +194,9 @@ td {
     width: 50%;
     margin: 0 auto;
 }
+
+
+.tr-container input {
+
+    background-color: white;
+}
