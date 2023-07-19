@@ -96,6 +96,12 @@ li {
     margin: 0 auto;
 }
 
+.sold-p-nav-line {
+    width: 70%;
+    margin: 10px auto;
+
+}
+
 .container {
     padding-top: 30px;
     width: 80%;

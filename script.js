@@ -179,6 +179,7 @@ function showData() {
     let tableCat2 = '';
     dataProduct2.forEach((product, i) => {
         tableCat2 += `
+        <tr class="tr-container2"><tr/>
                 <tr>
                 <td>${i + 1}</td>
                 <td>${product.title}</td>
@@ -191,7 +192,7 @@ function showData() {
                 updateData2(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
-                sellItem2(${i})
+                sellTo2(${i})
                 " id="delete">Sell</button></td>
             </tr>`
 
@@ -203,6 +204,7 @@ function showData() {
     let tableCat3 = '';
     dataProduct3.forEach((product, i) => {
         tableCat3 += `
+        <tr class="tr-container3"><tr/>
                 <tr>
                 <td>${i + 1}</td>
                 <td>${product.title}</td>
@@ -215,7 +217,7 @@ function showData() {
                 updateData3(${i})
                 ' id="update">Update</button></td>
                 <td><button onclick="
-                sellItem3(${i})
+                sellTo3(${i})
                 " id="delete">Sell</button></td>
             </tr>`
 
@@ -267,13 +269,6 @@ function sellTo(i) {
 }
 
 
-
-
-
-
-
-
-
 function sellItem(i) {
 
     let dateFunc = new Date()
@@ -307,16 +302,52 @@ function sellItem(i) {
     // console.log(soldProductpage);
 }
 
+
+let custFirstName2;
+let custLasttName2;
+let custPhoneNum2;
+
+
+function sellTo2(i) {
+    let trContaienr2 = document.querySelectorAll('.tr-container2')[i]
+    // const newDiv = document.createElement("tr");
+    // newDiv.className = 'new-div'
+    trContaienr2.innerHTML = `
+    <td colspan="2"><input class='first-name2' type="text" placeholder='First name'></td>
+     <td colspan="2"> <input class='last-name2' type="text" placeholder='Last name'></td>
+    <td colspan="2"> <input class='phone-num2' type="text" placeholder='Phone number '></td>
+    <td></td>
+    <td colspan="2"> <button onclick='
+    sellItem2(${i})
+    '>Sell Product</button></td>`
+
+    // console.log(custFirstName.value);
+    // trContaienr.appendChild(newDiv)
+    console.log(trContaienr2);
+}
+
+
+
 function sellItem2(i) {
 
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
 
+
+    custFirstName2 = document.querySelector('.first-name2')
+    custLasttName2 = document.querySelector('.last-name2')
+    custPhoneNum2 = document.querySelector('.phone-num2')
+    console.log(custPhoneNum2.value);
+
     soldProductData2 = dataProduct2.splice(i, 1)
     soldProductpage2.push({
         data: soldProductData2,
-        getDate: getDate
+        getDate: getDate,
+        firstName2: custFirstName2.value,
+        lastName2: custLasttName2.value,
+        phoneNum2: custPhoneNum2.value
+
     })
 
     console.log(soldProductpage2);
@@ -329,16 +360,56 @@ function sellItem2(i) {
     showData()
     console.log(soldProductpage2);
 }
+
+
+let custFirstName3;
+let custLasttName3;
+let custPhoneNum3;
+
+
+function sellTo3(i) {
+    let trContaienr3 = document.querySelectorAll('.tr-container3')[i]
+    // const newDiv = document.createElement("tr");
+    // newDiv.className = 'new-div'
+    trContaienr3.innerHTML = `
+    <td colspan="2"><input class='first-name3' type="text" placeholder='First name'></td>
+     <td colspan="2"> <input class='last-name3' type="text" placeholder='Last name'></td>
+    <td colspan="2"> <input class='phone-num3' type="text" placeholder='Phone number '></td>
+    <td></td>
+    <td colspan="2"> <button onclick='
+    sellItem3(${i})
+    '>Sell Product</button></td>`
+
+    // console.log(custFirstName.value);
+    // trContaienr.appendChild(newDiv)
+    console.log(trContaienr3);
+}
+
+
+
+
 function sellItem3(i) {
 
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
 
+
+    custFirstName3 = document.querySelector('.first-name3')
+    custLasttName3 = document.querySelector('.last-name3')
+    custPhoneNum3 = document.querySelector('.phone-num3')
+    console.log(custPhoneNum3.value);
+
+
     soldProductData3 = dataProduct3.splice(i, 1)
     soldProductpage3.push({
         data: soldProductData3,
-        getDate: getDate
+        getDate: getDate,
+        firstName3: custFirstName3.value,
+        lastName3: custLasttName3.value,
+        phoneNum3: custPhoneNum3.value
+
+
     })
 
     console.log(soldProductpage3);

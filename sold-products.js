@@ -61,10 +61,10 @@ function showSoldProductData() {
         <td>${i + 1}</td>
         <td>${soldProductpage2[i].data[0].title}</td>
         <td>${soldProductpage2[i].data[0].price}</td>
-        <td>${soldProductpage2[i].data[0].taxes}</td>
-        <td>${soldProductpage2[i].data[0].discount}</td>
         <td>${soldProductpage2[i].data[0].total}</td>
         <td>${soldProductpage2[i].data[0].category}</td>
+        <td>${soldProductpage2[i].firstName2} ${soldProductpage2[i].lastName2}</td>
+        <td>${soldProductpage2[i].phoneNum2}</td>
         <td>${soldProductpage2[i].getDate}</td>
         <td><button onclick="
         deleteItem2(${i})
@@ -86,10 +86,10 @@ function showSoldProductData() {
         <td>${i + 1}</td>
         <td>${soldProductpage3[i].data[0].title}</td>
         <td>${soldProductpage3[i].data[0].price}</td>
-        <td>${soldProductpage3[i].data[0].taxes}</td>
-        <td>${soldProductpage3[i].data[0].discount}</td>
         <td>${soldProductpage3[i].data[0].total}</td>
         <td>${soldProductpage3[i].data[0].category}</td>
+        <td>${soldProductpage3[i].firstName3} ${soldProductpage3[i].lastName3}</td>
+        <td>${soldProductpage3[i].phoneNum3}</td>
         <td>${soldProductpage3[i].getDate}</td>
         <td><button onclick="
         deleteItem3(${i})
@@ -126,4 +126,87 @@ function deleteItem3(i) {
     console.log(soldProductpage3);
 
     showSoldProductData()
+}
+
+// Search
+
+
+function searchDataSoldPro(value) {
+
+    let table = '';
+    for (let i = 0; i < soldProductpage.length; i++) {
+
+        if (soldProductpage[i].data[0].title.toLowerCase().includes(value) || soldProductpage[i].data[0].title.includes(value)) {
+            table += `
+            <tr>
+            <td>${i + 1}</td>
+            <td>${soldProductpage[i].data[0].title}</td>
+            <td>${soldProductpage[i].data[0].price}</td>
+            <td>${soldProductpage[i].data[0].total}</td>
+            <td>${soldProductpage[i].data[0].category}</td>
+            <td>${soldProductpage[i].firstName} ${soldProductpage[i].lastName}</td>
+            <td>${soldProductpage[i].phoneNum}</td>
+            <td>${soldProductpage[i].getDate}</td>
+            <td><button onclick="
+            deleteItem(${i})
+            " id="delete">Delete</button></td>
+        </tr>`;
+            // console.log(dataProduct[i].title);
+        }
+
+    }
+    let tbody = document.querySelector('#tbody-sold-p1')
+    tbody.innerHTML = table
+
+    let table2 = '';
+    for (let i = 0; i < soldProductpage2.length; i++) {
+
+        if (soldProductpage2[i].data[0].title.toLowerCase().includes(value) || soldProductpage2[i].data[0].title.includes(value)) {
+            table2 += `
+            <tr>
+            <td>${i + 1}</td>
+            <td>${soldProductpage2[i].data[0].title}</td>
+            <td>${soldProductpage2[i].data[0].price}</td>
+            <td>${soldProductpage2[i].data[0].total}</td>
+            <td>${soldProductpage2[i].data[0].category}</td>
+            <td>${soldProductpage2[i].firstName2} ${soldProductpage2[i].lastName2}</td>
+            <td>${soldProductpage2[i].phoneNum2}</td>
+            <td>${soldProductpage2[i].getDate}</td>
+            <td><button onclick="
+            deleteItem2(${i})
+            " id="delete">Delete</button></td>
+        </tr>`;
+            // console.log(dataProduct[i].title);
+        }
+
+    }
+    let tbody2 = document.querySelector('#tbody-sold-p2')
+    tbody2.innerHTML = table2
+
+
+    let table3 = '';
+    for (let i = 0; i < soldProductpage3.length; i++) {
+
+        if (soldProductpage3[i].data[0].title.toLowerCase().includes(value) || soldProductpage3[i].data[0].title.includes(value)) {
+            table3 += `
+            <tr>
+            <td>${i + 1}</td>
+            <td>${soldProductpage3[i].data[0].title}</td>
+            <td>${soldProductpage3[i].data[0].price}</td>
+            <td>${soldProductpage3[i].data[0].total}</td>
+            <td>${soldProductpage3[i].data[0].category}</td>
+            <td>${soldProductpage3[i].firstName3} ${soldProductpage3[i].lastName3}</td>
+            <td>${soldProductpage3[i].phoneNum3}</td>
+            <td>${soldProductpage3[i].getDate}</td>
+            <td><button onclick="
+            deleteItem3(${i})
+            " id="delete">Delete</button></td>
+        </tr>`;
+            // console.log(dataProduct[i].title);
+        }
+
+    }
+    let tbody3 = document.querySelector('#tbody-sold-p3')
+    tbody3.innerHTML = table3
+
 }
