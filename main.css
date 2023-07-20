@@ -102,6 +102,12 @@ li {
 
 }
 
+.search-container-sold-p {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 .container {
     padding-top: 30px;
     width: 80%;
