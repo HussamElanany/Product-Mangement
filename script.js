@@ -1,6 +1,6 @@
 const title = document.querySelector('#title')
+const qty = document.querySelector('#qty')
 const price = document.querySelector('#price')
-const taxes = document.querySelector('#taxes')
 const discount = document.querySelector('#discount')
 const total = document.querySelector('#total')
 const count = document.querySelector('#count')
@@ -13,8 +13,8 @@ let temp;
 // get Total 
 function getTotal() {
 
-    if (price.value != '') {
-        let result = +price.value + +taxes.value - +discount.value
+    if (qty.value != '') {
+        let result = +qty.value * +price.value - +discount.value
         total.innerHTML = result
         total.style.background = '#040'
     }
@@ -54,8 +54,8 @@ submit.onclick = function () {
     console.log(date);
     let newProduct = {
         title: title.value,
+        qty: qty.value,
         price: price.value,
-        taxes: taxes.value,
         discount: discount.value,
         total: total.innerHTML,
         count: count.value,
@@ -66,7 +66,7 @@ submit.onclick = function () {
 
 
     //Clean data
-    if (title.value != '' && price.value != '' && category.value != '') {
+    if (title.value != '' && qty.value != '' && category.value != '') {
         // category intent
         if (newProduct.category == 'Category 1') {
             //Update
@@ -137,8 +137,8 @@ submit.onclick = function () {
 
 function clearData() {
     title.value = ''
+    qty.value = ''
     price.value = ''
-    taxes.value = ''
     discount.value = ''
     total.innerHTML = ''
     count.value = ''
@@ -149,24 +149,37 @@ function clearData() {
 
 // show data
 function showData() {
+
     let table = '';
     dataProduct.forEach((product, i) => {
+
         table += `
         <tr class="tr-container"><tr/>
-                <tr>
+                <tr id=${i}>
                 <td>${i + 1}</td>
                 <td>${product.title}</td>
-                <td>${product.price}</td>
-                <td>${product.taxes}</td>
-                <td>${product.discount}</td>
-                <td>${product.total}</td>
+                <td id=${'qty' + i}>${product.qty}</td>
+                <td id=${'price' + i}>${product.price}</td>
+              
+                <td id=${'total' + i}>${product.total}</td>
                 <td>${product.category}</td>
+                <td>
+                <button onclick='
+               sellOneItem(${product.qty}, ${product.price}  , ${product.total}  ,${i})              
+                '
+                id="sell-1">Sell One</button></td>
+                </td>
+                
                 <td><button onclick='
                 updateData(${i})
                 ' id="update">Update</button></td>
-                <td><button onclick="
+                </td>
+                
+                <td>
+                <button onclick="
                 sellTo(${i})
-                " id="delete">Sell</button></td>
+                " id="delete${i}">Sell</button>
+                </td>
             </tr>
             `
 
@@ -180,14 +193,20 @@ function showData() {
     dataProduct2.forEach((product, i) => {
         tableCat2 += `
         <tr class="tr-container2"><tr/>
-                <tr>
+                <tr id=${i}>
                 <td>${i + 1}</td>
                 <td>${product.title}</td>
-                <td>${product.price}</td>
-                <td>${product.taxes}</td>
-                <td>${product.discount}</td>
-                <td>${product.total}</td>
+                <td id=${'qty2' + i}>${product.qty}</td>
+                <td id=${'price2' + i}>${product.price}</td>
+                <td id=${'total2' + i}>${product.total}</td>
                 <td>${product.category}</td>
+                <td>
+                <button onclick='
+               sellOneItem2(${product.qty}, ${product.price}  , ${product.total}  ,${i})              
+                '
+                id="sell-1">Sell One</button></td>
+                </td>
+
                 <td><button onclick='
                 updateData2(${i})
                 ' id="update">Update</button></td>
@@ -195,7 +214,6 @@ function showData() {
                 sellTo2(${i})
                 " id="delete">Sell</button></td>
             </tr>`
-
     })
     let tbodyCat2 = document.querySelector('#tbody-cat2')
     tbodyCat2.innerHTML = tableCat2
@@ -205,14 +223,20 @@ function showData() {
     dataProduct3.forEach((product, i) => {
         tableCat3 += `
         <tr class="tr-container3"><tr/>
-                <tr>
+                <tr id=${i}>
                 <td>${i + 1}</td>
                 <td>${product.title}</td>
-                <td>${product.price}</td>
-                <td>${product.taxes}</td>
-                <td>${product.discount}</td>
-                <td>${product.total}</td>
+                <td id=${'qty3' + i}>${product.qty}</td>
+                <td id=${'price3' + i}>${product.price}</td>
+                <td id=${'total3' + i}>${product.total}</td>
                 <td>${product.category}</td>
+                <td>
+                <button onclick='
+                sellOneItem3(${product.qty}, ${product.price}  , ${product.total}  ,${i})       
+                '
+                id="sell-1">Sell One</button></td>
+                </td>
+
                 <td><button onclick='
                 updateData3(${i})
                 ' id="update">Update</button></td>
@@ -228,7 +252,7 @@ function showData() {
 
     //show delete all btn
     let deleteAllDiv = document.querySelector('#delete-all')
-    if (dataProduct.length > 0) {
+    if (dataProduct.length > 0 || dataProduct2.length > 0 || dataProduct3.length > 0) {
         deleteAllDiv.innerHTML = `
      <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct.length + dataProduct2.length + dataProduct3.length})</button>
      `
@@ -237,6 +261,280 @@ function showData() {
     }
 }
 showData()
+
+// Sell one
+
+let testCustFirstName;
+let testCustLasttName;
+let testCustPhoneNum;
+let oneSoldItem = []
+
+function sellOneItem(qty, price, total, i) {
+
+    console.log(qty, price, total, i);
+
+
+
+    let trContaienrTest = document.querySelectorAll('.tr-container')[i]
+
+    trContaienrTest.innerHTML = `
+        <td colspan="2">
+        <input class='first-name' type="text" placeholder='First name'>
+        </td>
+         <td colspan="2"> 
+         <input class='last-name' type="text" placeholder='Last name'>
+         </td>
+        <td colspan="2"> 
+        <input class='phone-num' type="text" placeholder='Phone number'>
+        </td>
+       
+        <td colspan="3"> 
+        <button onclick='
+        saveSoldItem(${i})
+        '>Sell Product</button>
+        </td>`
+    testCustFirstName = document.querySelector('.first-name')
+    testCustLasttName = document.querySelector('.last-name')
+    testCustPhoneNum = document.querySelector('.phone-num')
+
+
+    qty = qty - 1
+    dataProduct[i].qty = qty
+    document.getElementById('qty' + i).innerHTML = qty
+
+    total = total - price
+    dataProduct[i].total = total
+    document.getElementById('total' + i).innerHTML = total
+
+    testCustFirstName = document.querySelector('.first-name')
+    testCustLasttName = document.querySelector('.last-name')
+    testCustPhoneNum = document.querySelector('.phone-num')
+
+    // localStorage.setItem('soldProduct', JSON.stringify(soldProductpage))
+
+    // localStorage.setItem('product', JSON.stringify(dataProduct))
+
+    // localStorage.product = JSON.stringify(dataProduct)
+
+
+}
+
+function saveSoldItem(i) {
+    let dateFunc = new Date()
+    let date = dateFunc.toString()
+    getDate = date.slice(0, 25)
+
+    let oneSoldItem = {
+        title: dataProduct[i].title,
+        qty: '1',
+        price: dataProduct[i].price,
+        discount: dataProduct[i].discount,
+        total: dataProduct[i].total,
+        count: dataProduct[i].count,
+        category: dataProduct[i].category,
+        firstName: testCustFirstName.value,
+        lastName: testCustLasttName.value,
+        phoneNum: testCustPhoneNum.value,
+        getDate: getDate
+    }
+    soldProductpage.push(oneSoldItem)
+
+    console.log(soldProductpage);
+    showData()
+
+    localStorage.setItem('soldProduct', JSON.stringify(soldProductpage))
+
+    localStorage.setItem('product', JSON.stringify(dataProduct))
+
+    localStorage.product = JSON.stringify(dataProduct)
+
+}
+
+// Cat 2
+
+let testCustFirstName2;
+let testCustLasttName2;
+let testCustPhoneNum2;
+
+function sellOneItem2(qty2, price2, total2, i) {
+
+    console.log(qty2, price2, total2, i);
+
+
+
+    let trContaienrTest2 = document.querySelectorAll('.tr-container2')[i]
+
+    trContaienrTest2.innerHTML = `
+        <td colspan="2">
+        <input class='first-name2' type="text" placeholder='First name'>
+        </td>
+         <td colspan="2"> 
+         <input class='last-name2' type="text" placeholder='Last name'>
+         </td>
+        <td colspan="2"> 
+        <input class='phone-num2' type="text" placeholder='Phone number'>
+        </td>
+       
+        <td colspan="3"> 
+        <button onclick='
+        saveSoldItem2(${i})
+        '>Sell Product</button>
+        </td>`
+    testCustFirstName2 = document.querySelector('.first-name2')
+    testCustLasttName2 = document.querySelector('.last-name2')
+    testCustPhoneNum2 = document.querySelector('.phone-num2')
+
+
+    qty2 = qty2 - 1
+    dataProduct2[i].qty = qty2
+    document.getElementById('qty2' + i).innerHTML = qty2
+
+
+    total2 = total2 - price2
+    dataProduct2[i].total = total2
+    document.getElementById('total2' + i).innerHTML = total2
+    console.log(dataProduct2);
+
+    testCustFirstName2 = document.querySelector('.first-name2')
+    testCustLasttName2 = document.querySelector('.last-name2')
+    testCustPhoneNum2 = document.querySelector('.phone-num2')
+
+    localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
+
+    localStorage.setItem('product2', JSON.stringify(dataProduct2))
+
+    localStorage.product2 = JSON.stringify(dataProduct2)
+
+
+}
+
+
+function saveSoldItem2(i) {
+    let dateFunc = new Date()
+    let date = dateFunc.toString()
+    getDate = date.slice(0, 25)
+
+    let oneSoldItem2 = {
+        title: dataProduct2[i].title,
+        qty: '1',
+        price: dataProduct2[i].price,
+        discount: dataProduct2[i].discount,
+        total: dataProduct2[i].total,
+        count: dataProduct2[i].count,
+        category: dataProduct2[i].category,
+        firstName: testCustFirstName2.value,
+        lastName: testCustLasttName2.value,
+        phoneNum: testCustPhoneNum2.value,
+        getDate: getDate
+    }
+    soldProductpage2.push(oneSoldItem2)
+
+    console.log(soldProductpage2);
+    showData()
+
+
+    localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
+
+    localStorage.setItem('product2', JSON.stringify(dataProduct2))
+
+    localStorage.product2 = JSON.stringify(dataProduct2)
+
+    // localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
+
+    // localStorage.product2 = JSON.stringify(dataProduct2)
+
+}
+
+// Cat 3
+
+let testCustFirstName3;
+let testCustLasttName3;
+let testCustPhoneNum3;
+
+function sellOneItem3(qty3, price3, total3, i) {
+
+    console.log(qty3, price3, total3, i);
+
+
+
+    let trContaienrTest3 = document.querySelectorAll('.tr-container3')[i]
+
+    trContaienrTest3.innerHTML = `
+        <td colspan="2">
+        <input class='first-name3' type="text" placeholder='First name'>
+        </td>
+         <td colspan="2"> 
+         <input class='last-name3' type="text" placeholder='Last name'>
+         </td>
+        <td colspan="2"> 
+        <input class='phone-num3' type="text" placeholder='Phone number'>
+        </td>
+       
+        <td colspan="3"> 
+        <button onclick='
+        saveSoldItem3(${i})
+        '>Sell Product</button>
+        </td>`
+    testCustFirstName3 = document.querySelector('.first-name3')
+    testCustLasttName3 = document.querySelector('.last-name3')
+    testCustPhoneNum3 = document.querySelector('.phone-num3')
+
+
+    qty3 = qty3 - 1
+    dataProduct3[i].qty = qty3
+    document.getElementById('qty3' + i).innerHTML = qty3
+
+
+    total3 = total3 - price3
+    dataProduct3[i].total = total3
+    document.getElementById('total3' + i).innerHTML = total3
+    console.log(dataProduct3);
+
+    testCustFirstName3 = document.querySelector('.first-name3')
+    testCustLasttName3 = document.querySelector('.last-name3')
+    testCustPhoneNum3 = document.querySelector('.phone-num3')
+
+    localStorage.setItem('soldProduct3', JSON.stringify(soldProductpage3))
+
+    localStorage.setItem('product3', JSON.stringify(dataProduct3))
+
+    localStorage.product3 = JSON.stringify(dataProduct3)
+
+
+}
+
+
+function saveSoldItem3(i) {
+    let dateFunc = new Date()
+    let date = dateFunc.toString()
+    getDate = date.slice(0, 25)
+
+    let oneSoldItem3 = {
+        title: dataProduct3[i].title,
+        qty: '1',
+        price: dataProduct3[i].price,
+        discount: dataProduct3[i].discount,
+        total: dataProduct3[i].total,
+        count: dataProduct3[i].count,
+        category: dataProduct3[i].category,
+        firstName: testCustFirstName3.value + ' ',
+        lastName: testCustLasttName3.value,
+        phoneNum: testCustPhoneNum3.value,
+        getDate: getDate
+    }
+    soldProductpage3.push(oneSoldItem3)
+
+    console.log(soldProductpage3);
+    showData()
+
+
+    localStorage.setItem('soldProduct3', JSON.stringify(soldProductpage3))
+
+    localStorage.setItem('product3', JSON.stringify(dataProduct3))
+
+    localStorage.product3 = JSON.stringify(dataProduct3)
+
+}
 
 
 // Sell Product
@@ -251,6 +549,7 @@ let custPhoneNum;
 
 
 function sellTo(i) {
+
     let trContaienr = document.querySelectorAll('.tr-container')[i]
     // const newDiv = document.createElement("tr");
     // newDiv.className = 'new-div'
@@ -259,13 +558,12 @@ function sellTo(i) {
      <td colspan="2"> <input class='last-name' type="text" placeholder='Last name'></td>
     <td colspan="2"> <input class='phone-num' type="text" placeholder='Phone number '></td>
     <td></td>
-    <td colspan="2"> <button onclick='
+    <td colspan="2"> 
+    <button onclick='
+    
     sellItem(${i})
     '>Sell Product</button></td>`
 
-    // console.log(custFirstName.value);
-    // trContaienr.appendChild(newDiv)
-    console.log(trContaienr);
 }
 
 
@@ -430,6 +728,8 @@ function sellItem3(i) {
 function deleteAll() {
     localStorage.clear()
     dataProduct.splice(0)
+    dataProduct2.splice(0)
+    dataProduct3.splice(0)
     showData()
 }
 
@@ -438,8 +738,8 @@ function deleteAll() {
 
 function updateData(i) {
     title.value = dataProduct[i].title
+    qty.value = dataProduct[i].qty
     price.value = dataProduct[i].price
-    taxes.value = dataProduct[i].taxes
     discount.value = dataProduct[i].discount
     getTotal()
     count.style.display = 'none'
@@ -456,8 +756,8 @@ function updateData(i) {
 // Update Category 2
 function updateData2(i) {
     title.value = dataProduct2[i].title
+    qty.value = dataProduct2[i].qty
     price.value = dataProduct2[i].price
-    taxes.value = dataProduct2[i].taxes
     discount.value = dataProduct2[i].discount
     getTotal()
     count.style.display = 'none'
@@ -474,8 +774,8 @@ function updateData2(i) {
 // Update Category 3
 function updateData3(i) {
     title.value = dataProduct3[i].title
+    qty.value = dataProduct3[i].qty
     price.value = dataProduct3[i].price
-    taxes.value = dataProduct3[i].taxes
     discount.value = dataProduct3[i].discount
     getTotal()
     count.style.display = 'none'
@@ -510,8 +810,8 @@ function searchData(value) {
             <tr>
             <td>${i + 1}</td>
             <td>${dataProduct[i].title}</td>
+            <td>${dataProduct[i].qty}</td>
             <td>${dataProduct[i].price}</td>
-            <td>${dataProduct[i].taxes}</td>
             <td>${dataProduct[i].discount}</td>
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
@@ -537,8 +837,8 @@ function searchData(value) {
             <tr>
             <td>${i + 1}</td>
             <td>${dataProduct2[i].title}</td>
+            <td>${dataProduct2[i].qty}</td>
             <td>${dataProduct2[i].price}</td>
-            <td>${dataProduct2[i].taxes}</td>
             <td>${dataProduct2[i].discount}</td>
             <td>${dataProduct2[i].total}</td>
             <td>${dataProduct2[i].category}</td>
@@ -564,8 +864,8 @@ function searchData(value) {
             <tr>
             <td>${i + 1}</td>
             <td>${dataProduct3[i].title}</td>
+            <td>${dataProduct3[i].qty}</td>
             <td>${dataProduct3[i].price}</td>
-            <td>${dataProduct3[i].taxes}</td>
             <td>${dataProduct3[i].discount}</td>
             <td>${dataProduct3[i].total}</td>
             <td>${dataProduct3[i].category}</td>
