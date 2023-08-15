@@ -332,7 +332,7 @@ function saveSoldItem(i) {
         total: dataProduct[i].total,
         count: dataProduct[i].count,
         category: dataProduct[i].category,
-        firstName: testCustFirstName.value,
+        firstName: testCustFirstName.value + ' ',
         lastName: testCustLasttName.value,
         phoneNum: testCustPhoneNum.value,
         getDate: getDate
@@ -422,7 +422,7 @@ function saveSoldItem2(i) {
         total: dataProduct2[i].total,
         count: dataProduct2[i].count,
         category: dataProduct2[i].category,
-        firstName: testCustFirstName2.value,
+        firstName: testCustFirstName2.value + ' ',
         lastName: testCustLasttName2.value,
         phoneNum: testCustPhoneNum2.value,
         getDate: getDate
@@ -583,7 +583,7 @@ function sellItem(i) {
     soldProductpage.push({
         data: soldProductData,
         getDate: getDate,
-        firstName: custFirstName.value,
+        firstName: custFirstName.value + ' ',
         lastName: custLasttName.value,
         phoneNum: custPhoneNum.value
 
@@ -642,9 +642,9 @@ function sellItem2(i) {
     soldProductpage2.push({
         data: soldProductData2,
         getDate: getDate,
-        firstName2: custFirstName2.value,
-        lastName2: custLasttName2.value,
-        phoneNum2: custPhoneNum2.value
+        firstName: custFirstName2.value + ' ',
+        lastName: custLasttName2.value,
+        phoneNum: custPhoneNum2.value
 
     })
 
@@ -703,9 +703,9 @@ function sellItem3(i) {
     soldProductpage3.push({
         data: soldProductData3,
         getDate: getDate,
-        firstName3: custFirstName3.value,
-        lastName3: custLasttName3.value,
-        phoneNum3: custPhoneNum3.value
+        firstName: custFirstName3.value + ' ',
+        lastName: custLasttName3.value,
+        phoneNum: custPhoneNum3.value
 
 
     })
