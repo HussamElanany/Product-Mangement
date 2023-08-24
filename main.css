@@ -1,3 +1,4 @@
+/* Global Rules */
 * {
     padding: 0;
     margin: 0;
@@ -20,6 +21,12 @@ a {
 a:hover {
     opacity: 0.7;
 }
+
+.invisble {
+    display: none;
+}
+
+/* Nav Bar */
 
 nav {
     padding: 20px 0 30px 20px;
@@ -96,18 +103,8 @@ li {
     margin: 0 auto;
 }
 
-.sold-p-nav-line {
-    width: 70%;
-    margin: 10px auto;
 
-}
-
-.search-container-sold-p {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
+/* Home page stracture*/
 .container {
     padding-top: 30px;
     width: 80%;
@@ -125,13 +122,14 @@ h2 {
     margin-bottom: 10px;
 }
 
+
 .container input,
 select {
     width: 100%;
     height: 30px;
     outline: none;
     border: none;
-    background-color: #111;
+    background-color: black;
     margin: 2px 0;
     padding: 4px;
     border-radius: 4px;
@@ -143,12 +141,14 @@ select {
 }
 
 .container input:focus {
-    background-color: #000;
-    transform: scale(1.03);
+    background-color: black;
+    transform: scale(1.0);
+    color: white;
 }
 
+
 .container .inputs .price input {
-    width: 30%;
+    width: 45%;
 }
 
 #total {
@@ -177,8 +177,8 @@ button:hover {
 
 #delete-all-btn {
     margin: 5px 0;
-
 }
+
 
 h4 {
     font-size: 19px;
@@ -186,6 +186,7 @@ h4 {
     margin: 10px 0;
 }
 
+/* Display Products */
 table {
     width: 100%;
     text-align: center;
@@ -202,13 +203,33 @@ td {
     padding: 5px;
 }
 
+
+/* Copy right Section */
+.copy-right {
+    padding-top: 70px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.copy-right p a {
+    border-bottom: 3px solid lightgreen;
+}
+
+/* For sold pro Page only*/
 .sold-pro-line {
     width: 50%;
     margin: 0 auto;
 }
 
 
-.tr-container input {
+.sold-p-nav-line {
+    width: 70%;
+    margin: 10px auto;
 
-    background-color: white;
+}
+
+.search-container-sold-p {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }

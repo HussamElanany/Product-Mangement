@@ -1,7 +1,7 @@
 const title = document.querySelector('#title')
 const qty = document.querySelector('#qty')
 const price = document.querySelector('#price')
-const discount = document.querySelector('#discount')
+// const discount = document.querySelector('#discount')
 const total = document.querySelector('#total')
 const count = document.querySelector('#count')
 const category = document.querySelector('#category')
@@ -14,7 +14,7 @@ let temp;
 function getTotal() {
 
     if (qty.value != '') {
-        let result = +qty.value * +price.value - +discount.value
+        let result = +qty.value * +price.value;
         total.innerHTML = result
         total.style.background = '#040'
     }
@@ -56,7 +56,6 @@ submit.onclick = function () {
         title: title.value,
         qty: qty.value,
         price: price.value,
-        discount: discount.value,
         total: total.innerHTML,
         count: count.value,
         category: category.value,
@@ -139,7 +138,6 @@ function clearData() {
     title.value = ''
     qty.value = ''
     price.value = ''
-    discount.value = ''
     total.innerHTML = ''
     count.value = ''
     category.value = ''
@@ -287,9 +285,9 @@ function sellOneItem(qty, price, total, i) {
         <td colspan="2"> 
         <input class='phone-num' type="text" placeholder='Phone number'>
         </td>
-       
-        <td colspan="3"> 
-        <button onclick='
+        <td colspan="1"> </td>
+       <td colspan="2"> 
+        <button class='sell-pro-btn' onclick='
         saveSoldItem(${i})
         '>Sell Product</button>
         </td>`
@@ -328,7 +326,6 @@ function saveSoldItem(i) {
         title: dataProduct[i].title,
         qty: '1',
         price: dataProduct[i].price,
-        discount: dataProduct[i].discount,
         total: dataProduct[i].total,
         count: dataProduct[i].count,
         category: dataProduct[i].category,
@@ -374,9 +371,9 @@ function sellOneItem2(qty2, price2, total2, i) {
         <td colspan="2"> 
         <input class='phone-num2' type="text" placeholder='Phone number'>
         </td>
-       
-        <td colspan="3"> 
-        <button onclick='
+        <td colspan="1"> </td>
+        <td colspan="2"> 
+        <button class='sell-pro-btn' onclick='
         saveSoldItem2(${i})
         '>Sell Product</button>
         </td>`
@@ -418,7 +415,6 @@ function saveSoldItem2(i) {
         title: dataProduct2[i].title,
         qty: '1',
         price: dataProduct2[i].price,
-        discount: dataProduct2[i].discount,
         total: dataProduct2[i].total,
         count: dataProduct2[i].count,
         category: dataProduct2[i].category,
@@ -469,9 +465,9 @@ function sellOneItem3(qty3, price3, total3, i) {
         <td colspan="2"> 
         <input class='phone-num3' type="text" placeholder='Phone number'>
         </td>
-       
-        <td colspan="3"> 
-        <button onclick='
+        <td colspan="1"> </td>
+        <td colspan="2"> 
+        <button class='sell-pro-btn' onclick='
         saveSoldItem3(${i})
         '>Sell Product</button>
         </td>`
@@ -513,7 +509,7 @@ function saveSoldItem3(i) {
         title: dataProduct3[i].title,
         qty: '1',
         price: dataProduct3[i].price,
-        discount: dataProduct3[i].discount,
+
         total: dataProduct3[i].total,
         count: dataProduct3[i].count,
         category: dataProduct3[i].category,
@@ -559,7 +555,7 @@ function sellTo(i) {
     <td colspan="2"> <input class='phone-num' type="text" placeholder='Phone number '></td>
     <td></td>
     <td colspan="2"> 
-    <button onclick='
+    <button class='sell-pro-btn' onclick='
     
     sellItem(${i})
     '>Sell Product</button></td>`
@@ -615,7 +611,7 @@ function sellTo2(i) {
      <td colspan="2"> <input class='last-name2' type="text" placeholder='Last name'></td>
     <td colspan="2"> <input class='phone-num2' type="text" placeholder='Phone number '></td>
     <td></td>
-    <td colspan="2"> <button onclick='
+    <td colspan="2"> <button class='sell-pro-btn' onclick='
     sellItem2(${i})
     '>Sell Product</button></td>`
 
@@ -674,7 +670,7 @@ function sellTo3(i) {
      <td colspan="2"> <input class='last-name3' type="text" placeholder='Last name'></td>
     <td colspan="2"> <input class='phone-num3' type="text" placeholder='Phone number '></td>
     <td></td>
-    <td colspan="2"> <button onclick='
+    <td colspan="2"> <button class='sell-pro-btn' onclick='
     sellItem3(${i})
     '>Sell Product</button></td>`
 
@@ -740,7 +736,7 @@ function updateData(i) {
     title.value = dataProduct[i].title
     qty.value = dataProduct[i].qty
     price.value = dataProduct[i].price
-    discount.value = dataProduct[i].discount
+
     getTotal()
     count.style.display = 'none'
     category.value = dataProduct[i].category;
@@ -758,7 +754,7 @@ function updateData2(i) {
     title.value = dataProduct2[i].title
     qty.value = dataProduct2[i].qty
     price.value = dataProduct2[i].price
-    discount.value = dataProduct2[i].discount
+
     getTotal()
     count.style.display = 'none'
     category.value = dataProduct2[i].category;
@@ -776,7 +772,7 @@ function updateData3(i) {
     title.value = dataProduct3[i].title
     qty.value = dataProduct3[i].qty
     price.value = dataProduct3[i].price
-    discount.value = dataProduct3[i].discount
+
     getTotal()
     count.style.display = 'none'
     category.value = dataProduct3[i].category;
@@ -812,7 +808,7 @@ function searchData(value) {
             <td>${dataProduct[i].title}</td>
             <td>${dataProduct[i].qty}</td>
             <td>${dataProduct[i].price}</td>
-            <td>${dataProduct[i].discount}</td>
+          
             <td>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
             <td><button onclick='
@@ -839,7 +835,7 @@ function searchData(value) {
             <td>${dataProduct2[i].title}</td>
             <td>${dataProduct2[i].qty}</td>
             <td>${dataProduct2[i].price}</td>
-            <td>${dataProduct2[i].discount}</td>
+           
             <td>${dataProduct2[i].total}</td>
             <td>${dataProduct2[i].category}</td>
             <td><button onclick='
@@ -866,7 +862,7 @@ function searchData(value) {
             <td>${dataProduct3[i].title}</td>
             <td>${dataProduct3[i].qty}</td>
             <td>${dataProduct3[i].price}</td>
-            <td>${dataProduct3[i].discount}</td>
+           
             <td>${dataProduct3[i].total}</td>
             <td>${dataProduct3[i].category}</td>
             <td><button onclick='
