@@ -233,3 +233,18 @@ td {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
+
+
+.container .sold-qty,
+.container .sold-qty2,
+.container .sold-qty3 {
+    display: inline-block;
+    width: 40%;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    background-color: white;
+    color: #000;
+}
+
+
+#sell-1 {}

@@ -67,7 +67,7 @@ submit.onclick = function () {
     //Clean data
     if (title.value != '' && qty.value != '' && category.value != '') {
         // category intent
-        if (newProduct.category == 'Category 1') {
+        if (newProduct.category == 'Electrical') {
             //Update
             if (mood === 'create') {
                 //count
@@ -86,7 +86,7 @@ submit.onclick = function () {
             }
 
 
-        } else if (newProduct.category == 'Category 2') {
+        } else if (newProduct.category == 'Fitting') {
             //Update
             if (mood === 'create') {
                 //count
@@ -104,7 +104,7 @@ submit.onclick = function () {
                 count.style.display = 'block'
             }
         }
-        else if (newProduct.category == 'Category 3') {
+        else if (newProduct.category == 'Other') {
             //Update
             if (mood === 'create') {
                 //count
@@ -161,14 +161,20 @@ function showData() {
               
                 <td id=${'total' + i}>${product.total}</td>
                 <td>${product.category}</td>
+
+                <td>
+                <input type='number' id=${'sold-qty' + i} class='sold-qty'>
+                </td>
+
                 <td>
                 <button onclick='
                sellOneItem(${product.qty}, ${product.price}  , ${product.total}  ,${i})              
                 '
-                id="sell-1">Sell One</button></td>
+                id="sell-1">Sell Part</button></td>
                 </td>
                 
-                <td><button onclick='
+                <td>
+                <button onclick='
                 updateData(${i})
                 ' id="update">Update</button></td>
                 </td>
@@ -176,7 +182,7 @@ function showData() {
                 <td>
                 <button onclick="
                 sellTo(${i})
-                " id="delete${i}">Sell</button>
+                " id="delete${i}">Sell All Pro</button>
                 </td>
             </tr>
             `
@@ -199,10 +205,15 @@ function showData() {
                 <td id=${'total2' + i}>${product.total}</td>
                 <td>${product.category}</td>
                 <td>
+                <input type='number' id=${'sold-qty2' + i} class='sold-qty2'>
+                </td>
+
+                <td>
+
                 <button onclick='
                sellOneItem2(${product.qty}, ${product.price}  , ${product.total}  ,${i})              
                 '
-                id="sell-1">Sell One</button></td>
+                id="sell-2"> Sell Part</button></td>
                 </td>
 
                 <td><button onclick='
@@ -210,7 +221,7 @@ function showData() {
                 ' id="update">Update</button></td>
                 <td><button onclick="
                 sellTo2(${i})
-                " id="delete">Sell</button></td>
+                " id="delete">Sell All Pro</button></td>
             </tr>`
     })
     let tbodyCat2 = document.querySelector('#tbody-cat2')
@@ -229,10 +240,13 @@ function showData() {
                 <td id=${'total3' + i}>${product.total}</td>
                 <td>${product.category}</td>
                 <td>
+                <input type='number' id=${'sold-qty3' + i} class='sold-qty3'>
+                </td>
+                <td>
                 <button onclick='
                 sellOneItem3(${product.qty}, ${product.price}  , ${product.total}  ,${i})       
                 '
-                id="sell-1">Sell One</button></td>
+                id="sell-3">Sell Part</button></td>
                 </td>
 
                 <td><button onclick='
@@ -240,7 +254,7 @@ function showData() {
                 ' id="update">Update</button></td>
                 <td><button onclick="
                 sellTo3(${i})
-                " id="delete">Sell</button></td>
+                " id="delete">Sell All Pro</button></td>
             </tr>`
 
     })
@@ -265,6 +279,8 @@ showData()
 let testCustFirstName;
 let testCustLasttName;
 let testCustPhoneNum;
+let soldQty;
+let soldTotal;
 let oneSoldItem = []
 
 function sellOneItem(qty, price, total, i) {
@@ -291,18 +307,24 @@ function sellOneItem(qty, price, total, i) {
         saveSoldItem(${i})
         '>Sell Product</button>
         </td>`
+
     testCustFirstName = document.querySelector('.first-name')
     testCustLasttName = document.querySelector('.last-name')
+    soldQty = document.getElementById('sold-qty' + i)
     testCustPhoneNum = document.querySelector('.phone-num')
 
 
-    qty = qty - 1
+    qty = qty - soldQty.value
     dataProduct[i].qty = qty
     document.getElementById('qty' + i).innerHTML = qty
 
-    total = total - price
+    soldTotal = price * +soldQty.value
+    console.log(soldTotal);
+    total = total - (price * +soldQty.value)
     dataProduct[i].total = total
-    document.getElementById('total' + i).innerHTML = total
+    document.getElementById('total' + i).innerHTML = total;
+
+
 
     testCustFirstName = document.querySelector('.first-name')
     testCustLasttName = document.querySelector('.last-name')
@@ -313,6 +335,8 @@ function sellOneItem(qty, price, total, i) {
     // localStorage.setItem('product', JSON.stringify(dataProduct))
 
     // localStorage.product = JSON.stringify(dataProduct)
+    console.log(typeof (+soldQty.value));
+    console.log(total);
 
 
 }
@@ -324,9 +348,9 @@ function saveSoldItem(i) {
 
     let oneSoldItem = {
         title: dataProduct[i].title,
-        qty: '1',
+        qty: soldQty.value,
         price: dataProduct[i].price,
-        total: dataProduct[i].total,
+        total: soldTotal,
         count: dataProduct[i].count,
         category: dataProduct[i].category,
         firstName: testCustFirstName.value + ' ',
@@ -352,6 +376,8 @@ function saveSoldItem(i) {
 let testCustFirstName2;
 let testCustLasttName2;
 let testCustPhoneNum2;
+let soldQty2;
+let soldTotal2;
 
 function sellOneItem2(qty2, price2, total2, i) {
 
@@ -380,14 +406,16 @@ function sellOneItem2(qty2, price2, total2, i) {
     testCustFirstName2 = document.querySelector('.first-name2')
     testCustLasttName2 = document.querySelector('.last-name2')
     testCustPhoneNum2 = document.querySelector('.phone-num2')
+    soldQty2 = document.getElementById('sold-qty2' + i)
 
-
-    qty2 = qty2 - 1
+    qty2 = qty2 - soldQty2.value
     dataProduct2[i].qty = qty2
     document.getElementById('qty2' + i).innerHTML = qty2
 
 
-    total2 = total2 - price2
+    soldTotal2 = price2 * +soldQty2.value
+
+    total2 = total2 - (price2 * +soldQty2.value)
     dataProduct2[i].total = total2
     document.getElementById('total2' + i).innerHTML = total2
     console.log(dataProduct2);
@@ -396,11 +424,6 @@ function sellOneItem2(qty2, price2, total2, i) {
     testCustLasttName2 = document.querySelector('.last-name2')
     testCustPhoneNum2 = document.querySelector('.phone-num2')
 
-    localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
-
-    localStorage.setItem('product2', JSON.stringify(dataProduct2))
-
-    localStorage.product2 = JSON.stringify(dataProduct2)
 
 
 }
@@ -413,9 +436,9 @@ function saveSoldItem2(i) {
 
     let oneSoldItem2 = {
         title: dataProduct2[i].title,
-        qty: '1',
+        qty: soldQty2.value,
         price: dataProduct2[i].price,
-        total: dataProduct2[i].total,
+        total: soldTotal2,
         count: dataProduct2[i].count,
         category: dataProduct2[i].category,
         firstName: testCustFirstName2.value + ' ',
@@ -446,6 +469,8 @@ function saveSoldItem2(i) {
 let testCustFirstName3;
 let testCustLasttName3;
 let testCustPhoneNum3;
+let soldQty3;
+let soldTotal3;
 
 function sellOneItem3(qty3, price3, total3, i) {
 
@@ -474,14 +499,16 @@ function sellOneItem3(qty3, price3, total3, i) {
     testCustFirstName3 = document.querySelector('.first-name3')
     testCustLasttName3 = document.querySelector('.last-name3')
     testCustPhoneNum3 = document.querySelector('.phone-num3')
+    soldQty3 = document.getElementById('sold-qty3' + i)
 
-
-    qty3 = qty3 - 1
+    qty3 = qty3 - soldQty3.value
     dataProduct3[i].qty = qty3
     document.getElementById('qty3' + i).innerHTML = qty3
 
 
-    total3 = total3 - price3
+    soldTotal3 = price3 * +soldQty3.value
+
+    total3 = total3 - (price3 * +soldQty3.value)
     dataProduct3[i].total = total3
     document.getElementById('total3' + i).innerHTML = total3
     console.log(dataProduct3);
@@ -489,13 +516,6 @@ function sellOneItem3(qty3, price3, total3, i) {
     testCustFirstName3 = document.querySelector('.first-name3')
     testCustLasttName3 = document.querySelector('.last-name3')
     testCustPhoneNum3 = document.querySelector('.phone-num3')
-
-    localStorage.setItem('soldProduct3', JSON.stringify(soldProductpage3))
-
-    localStorage.setItem('product3', JSON.stringify(dataProduct3))
-
-    localStorage.product3 = JSON.stringify(dataProduct3)
-
 
 }
 
@@ -507,10 +527,9 @@ function saveSoldItem3(i) {
 
     let oneSoldItem3 = {
         title: dataProduct3[i].title,
-        qty: '1',
+        qty: soldQty3.value,
         price: dataProduct3[i].price,
-
-        total: dataProduct3[i].total,
+        total: soldTotal3,
         count: dataProduct3[i].count,
         category: dataProduct3[i].category,
         firstName: testCustFirstName3.value + ' ',
