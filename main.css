@@ -247,4 +247,60 @@ td {
 }
 
 
-#sell-1 {}
+/* Invoice syling*/
+.center-invoice {
+    font-weight: bold;
+    margin: auto;
+    width: 20%;
+    border: 3px solid lightgray;
+    padding: 10px;
+    position: relative;
+    top: 200px;
+    background-color: #fff;
+    color: #000;
+    font-size: 18px;
+}
+
+.center-invoice div {
+    padding-bottom: 5px;
+}
+
+.center-invoice div span {
+    margin-left: 3px;
+}
+
+.home-invoice-btn {
+    width: 60px;
+    margin-left: 30px;
+
+}
+
+.sold-pro-invoice {
+    width: 150px;
+    margin-left: 3px;
+}
+
+.invoice-logo {
+    font-size: 26px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    font-style: oblique;
+    text-decoration: underline;
+}
+
+/* Invoice mobile version */
+@media only screen and (max-width: 820px) {
+    .center-invoice {
+        font-weight: bold;
+        margin: auto;
+        width: 70%;
+        border: 3px solid lightgray;
+        padding: 10px;
+        position: relative;
+        top: 200px;
+        background-color: #fff;
+        color: #000;
+    }
+
+}

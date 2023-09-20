@@ -49,11 +49,26 @@ function showSoldProductData() {
             <td>${soldProductpage[i].phoneNum || soldProductpage[i].phoneNum}</td>
 
             <td>${soldProductpage[i].getDate || soldProductpage[i].data[0].getDate}</td>
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
+
 
             <td><button onclick="
             deleteItem(${i})
-            " id="delete">Delete</button></td>
-        </tr>`
+            " id="delete">Delete</button>
+            </td>
+
+          
+        </tr>
+      
+        `
         console.log(soldProductpage);
     }
     let tbody = document.querySelector('#tbody-sold-p1')
@@ -83,6 +98,16 @@ function showSoldProductData() {
             <td>${soldProductpage2[i].phoneNum || soldProductpage2[i].phoneNum}</td>
 
             <td>${soldProductpage2[i].getDate || soldProductpage2[i].data[0].getDate}</td>
+
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt2(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
 
             <td><button onclick="
             deleteItem2(${i})
@@ -118,26 +143,47 @@ function showSoldProductData() {
 
         <td>${soldProductpage3[i].getDate || soldProductpage3[i].data[0].getDate}</td>
 
+        <td> 
+        <a href='invoice.html' style='color:black'> 
+        <button onclick="
+        showReceipt3(${i})
+        "> 
+        Show Receipt  
+        </button>
+        </a>
+        </td>
+
         <td><button onclick="
         deleteItem3(${i})
         " id="delete">Delete</button></td>
-    </tr>`
+    </tr>
+   
+    `
 
     }
     let tbody3 = document.querySelector('#tbody-sold-p3')
     tbody3.innerHTML = tableSoldPro3
 }
 showSoldProductData()
-//test function 
 
-// function testShowSoldProductData() {
-
-// }
-// testShowSoldProductData()
+// Show Receipt
 
 
+function showReceipt(i) {
+    invoice.push(soldProductpage[i])
+    localStorage.setItem('theInvoice', JSON.stringify(invoice))
+}
 
-console.log(soldProductpage);
+function showReceipt2(i) {
+    invoice2.push(soldProductpage2[i])
+    localStorage.setItem('theInvoice2', JSON.stringify(invoice2))
+}
+
+function showReceipt3(i) {
+    invoice3.push(soldProductpage3[i])
+    localStorage.setItem('theInvoice3', JSON.stringify(invoice3))
+}
+
 // delete item
 
 function deleteItem(i) {
