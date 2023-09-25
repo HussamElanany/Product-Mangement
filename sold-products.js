@@ -40,7 +40,7 @@ function showSoldProductData() {
 
             <td>${soldProductpage[i].price || soldProductpage[i].data[0].price}</td>
 
-            <td>${soldProductpage[i].total || soldProductpage[i].data[0].total}</td>
+            <td>${+soldProductpage[i].price * +soldProductpage[i].qty || +soldProductpage[i].data[0].price * +soldProductpage[i].data[0].qty}</td>
 
             <td>${soldProductpage[i].category || soldProductpage[i].data[0].category}</td>
 
@@ -89,7 +89,7 @@ function showSoldProductData() {
 
             <td>${soldProductpage2[i].price || soldProductpage2[i].data[0].price}</td>
 
-            <td>${soldProductpage2[i].total || soldProductpage2[i].data[0].total}</td>
+            <td>${+soldProductpage2[i].price * +soldProductpage2[i].qty || +soldProductpage2[i].data[0].price * +soldProductpage2[i].data[0].qty}</td>
 
             <td>${soldProductpage2[i].category || soldProductpage2[i].data[0].category}</td>
 
@@ -133,7 +133,7 @@ function showSoldProductData() {
 
         <td>${soldProductpage3[i].price || soldProductpage3[i].data[0].price}</td>
 
-        <td>${soldProductpage3[i].total || soldProductpage3[i].data[0].total}</td>
+        <td>${+soldProductpage3[i].price * +soldProductpage3[i].qty || +soldProductpage3[i].data[0].price * +soldProductpage3[i].data[0].qty}</td>
 
         <td>${soldProductpage3[i].category || soldProductpage3[i].data[0].category}</td>
 
@@ -236,7 +236,15 @@ function searchDataSoldPro(value) {
             <td>${soldProductpage[i].phoneNum || soldProductpage[i].phoneNum}</td>
 
             <td>${soldProductpage[i].getDate || soldProductpage[i].data[0].getDate}</td>
-
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
             <td><button onclick="
             deleteItem(${i})
             " id="delete">Delete</button></td>
@@ -270,7 +278,16 @@ function searchDataSoldPro(value) {
             <td>${soldProductpage2[i].phoneNum || soldProductpage2[i].phoneNum}</td>
     
             <td>${soldProductpage2[i].getDate || soldProductpage2[i].getDate}</td>
-    
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt2(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
+
             <td><button onclick="
             deleteItem2(${i})
             " id="delete">Delete</button></td>
@@ -305,6 +322,16 @@ function searchDataSoldPro(value) {
             <td>${soldProductpage3[i].phoneNum || soldProductpage3[i].phoneNum}</td>
     
             <td>${soldProductpage3[i].getDate || soldProductpage3[i].getDate}</td>
+    
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt3(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
     
             <td><button onclick="
             deleteItem3(${i})
@@ -345,6 +372,16 @@ function searchByPhoneSoldPro(value) {
 
             <td>${soldProductpage[i].getDate || soldProductpage[i].data[0].getDate}</td>
 
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
+
             <td><button onclick="
             deleteItem(${i})
             " id="delete">Delete</button></td>
@@ -379,6 +416,16 @@ function searchByPhoneSoldPro(value) {
     
             <td>${soldProductpage2[i].getDate || soldProductpage2[i].getDate}</td>
     
+            <td> 
+            <a href='invoice.html' style='color:black'> 
+            <button onclick="
+            showReceipt2(${i})
+            "> 
+            Show Receipt  
+            </button>
+            </a>
+            </td>
+
             <td><button onclick="
             deleteItem2(${i})
             " id="delete">Delete</button></td>
@@ -414,9 +461,19 @@ function searchByPhoneSoldPro(value) {
     
             <td>${soldProductpage3[i].getDate || soldProductpage3[i].getDate}</td>
     
-            <td><button onclick="
-            deleteItem3(${i})
-            " id="delete">Delete</button></td>
+            <td> 
+        <a href='invoice.html' style='color:black'> 
+        <button onclick="
+        showReceipt3(${i})
+        "> 
+        Show Receipt  
+        </button>
+        </a>
+        </td>
+
+        <td><button onclick="
+        deleteItem3(${i})
+        " id="delete">Delete</button></td>
         </tr>`;
             // console.log(dataProduct[i].title);
         }

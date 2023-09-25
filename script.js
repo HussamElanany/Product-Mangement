@@ -263,14 +263,14 @@ function showData() {
 
 
     //show delete all btn
-    let deleteAllDiv = document.querySelector('#delete-all')
-    if (dataProduct.length > 0 || dataProduct2.length > 0 || dataProduct3.length > 0) {
-        deleteAllDiv.innerHTML = `
-     <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct.length + dataProduct2.length + dataProduct3.length})</button>
-     `
-    } else {
-        deleteAllDiv.innerHTML = ''
-    }
+    // let deleteAllDiv = document.querySelector('#delete-all')
+    // if (dataProduct.length > 0 || dataProduct2.length > 0 || dataProduct3.length > 0) {
+    //     deleteAllDiv.innerHTML = `
+    //  <button onclick='deleteAll()' id='delete-all-btn'>Delete All (${dataProduct.length + dataProduct2.length + dataProduct3.length})</button>
+    //  `
+    // } else {
+    //     deleteAllDiv.innerHTML = ''
+    // }
 }
 showData()
 
@@ -285,7 +285,7 @@ let oneSoldItem = []
 
 function sellOneItem(qty, price, total, i) {
 
-    console.log(qty, price, total, i);
+    console.log(qty, price, total, i, soldTotal);
 
 
 
@@ -314,27 +314,17 @@ function sellOneItem(qty, price, total, i) {
     testCustPhoneNum = document.querySelector('.phone-num')
 
 
-    qty = qty - soldQty.value
-    dataProduct[i].qty = qty
-    document.getElementById('qty' + i).innerHTML = qty
+    theQty = qty - soldQty.value;
+    dataProduct[i].qty = theQty;
+    document.getElementById('qty' + i).innerHTML = theQty;
 
-    soldTotal = price * +soldQty.value
+    soldTotal = price * +soldQty.value;
     console.log(soldTotal);
-    total = total - (price * +soldQty.value)
-    dataProduct[i].total = total
+    total = total - (price * +soldQty.value);
+    dataProduct[i].total = total;
     document.getElementById('total' + i).innerHTML = total;
 
 
-
-    testCustFirstName = document.querySelector('.first-name')
-    testCustLasttName = document.querySelector('.last-name')
-    testCustPhoneNum = document.querySelector('.phone-num')
-
-    // localStorage.setItem('soldProduct', JSON.stringify(soldProductpage))
-
-    // localStorage.setItem('product', JSON.stringify(dataProduct))
-
-    // localStorage.product = JSON.stringify(dataProduct)
     console.log(typeof (+soldQty.value));
     console.log(total);
 
@@ -387,49 +377,46 @@ function sellOneItem2(qty2, price2, total2, i) {
 
     let trContaienrTest2 = document.querySelectorAll('.tr-container2')[i]
 
-    trContaienrTest2.innerHTML = `
-        <td colspan="2">
-        <input class='first-name2' type="text" placeholder='First name'>
-        </td>
-         <td colspan="2"> 
-         <input class='last-name2' type="text" placeholder='Last name'>
-         </td>
-        <td colspan="2"> 
-        <input class='phone-num2' type="text" placeholder='Phone number'>
-        </td>
-        <td colspan="1"> </td>
-        <td colspan="2"> 
-        <button class='sell-pro-btn' onclick='
-        saveSoldItem2(${i})
-        '>Sell Product</button>
-        </td>`
+    trContaienrTest2.innerHTML =
+        `
+    <td colspan="2">
+    <input class='first-name2' type="text" placeholder='First name'>
+    </td>
+     <td colspan="2"> 
+     <input class='last-name2' type="text" placeholder='Last name'>
+     </td>
+    <td colspan="2"> 
+    <input class='phone-num2' type="text" placeholder='Phone number'>
+    </td>
+    <td colspan="1"> </td>
+   <td colspan="2"> 
+    <button class='sell-pro-btn' onclick='
+    saveSoldItem2(${i})
+    '>Sell Product</button>
+    </td>`
+
     testCustFirstName2 = document.querySelector('.first-name2')
     testCustLasttName2 = document.querySelector('.last-name2')
-    testCustPhoneNum2 = document.querySelector('.phone-num2')
     soldQty2 = document.getElementById('sold-qty2' + i)
-
-    qty2 = qty2 - soldQty2.value
-    dataProduct2[i].qty = qty2
-    document.getElementById('qty2' + i).innerHTML = qty2
-
-
-    soldTotal2 = price2 * +soldQty2.value
-
-    total2 = total2 - (price2 * +soldQty2.value)
-    dataProduct2[i].total = total2
-    document.getElementById('total2' + i).innerHTML = total2
-    console.log(dataProduct2);
-
-    testCustFirstName2 = document.querySelector('.first-name2')
-    testCustLasttName2 = document.querySelector('.last-name2')
     testCustPhoneNum2 = document.querySelector('.phone-num2')
 
 
+    theQty2 = qty2 - soldQty2.value;
+    dataProduct2[i].qty = theQty2;
+    document.getElementById('qty2' + i).innerHTML = theQty2;
+
+    soldTotal2 = price2 * +soldQty2.value;
+    console.log(soldTotal2);
+    total2 = total2 - (price2 * +soldQty2.value);
+    dataProduct2[i].total = total2;
+    document.getElementById('total2' + i).innerHTML = total2;
 
 }
 
 
 function saveSoldItem2(i) {
+
+
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
@@ -450,6 +437,32 @@ function saveSoldItem2(i) {
 
     console.log(soldProductpage2);
     showData()
+
+    // localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
+
+    // localStorage.setItem('product2', JSON.stringify(dataProduct2))
+
+    // localStorage.product2 = JSON.stringify(dataProduct2)
+    // let dateFunc = new Date()
+    // let date = dateFunc.toString()
+    // getDate = date.slice(0, 25)
+
+    // let oneSoldItem2 = {
+    //     title: dataProduct2[i].title,
+    //     qty: soldQty2.value,
+    //     price: dataProduct2[i].price,
+    //     total: soldTotal2,
+    //     count: dataProduct2[i].count,
+    //     category: dataProduct2[i].category,
+    //     firstName: testCustFirstName2.value + ' ',
+    //     lastName: testCustLasttName2.value,
+    //     phoneNum: testCustPhoneNum2.value,
+    //     getDate: getDate
+    // }
+    // soldProductpage2.push(oneSoldItem2)
+
+    // console.log(soldProductpage2);
+    // showData()
 
 
     localStorage.setItem('soldProduct2', JSON.stringify(soldProductpage2))
@@ -740,13 +753,13 @@ function sellItem3(i) {
 
 // Delete All
 
-function deleteAll() {
-    localStorage.clear()
-    dataProduct.splice(0)
-    dataProduct2.splice(0)
-    dataProduct3.splice(0)
-    showData()
-}
+// function deleteAll() {
+//     localStorage.clear()
+//     dataProduct.splice(0)
+//     dataProduct2.splice(0)
+//     dataProduct3.splice(0)
+//     showData()
+// }
 
 
 // Update Method
@@ -822,21 +835,41 @@ function searchData(value) {
 
         if (dataProduct[i].title.toLowerCase().includes(value) || dataProduct[i].title.includes(value)) {
             table += `
-            <tr>
+            <tr class="tr-container"><tr/>
+            <tr id=${i}>
             <td>${i + 1}</td>
             <td>${dataProduct[i].title}</td>
-            <td>${dataProduct[i].qty}</td>
-            <td>${dataProduct[i].price}</td>
+            <td id=${'qty' + i}>${dataProduct[i].qty}</td>
+            <td id=${'price' + i}>${dataProduct[i].price}</td>
           
-            <td>${dataProduct[i].total}</td>
+            <td id=${'total' + i}>${dataProduct[i].total}</td>
             <td>${dataProduct[i].category}</td>
-            <td><button onclick='
+
+            <td>
+            <input type='number' id=${'sold-qty' + i} class='sold-qty'>
+            </td>
+
+            <td>
+            <button onclick='
+           sellOneItem(${dataProduct[i].qty}, ${dataProduct[i].price}  , ${dataProduct[i].total}  ,${i})              
+            '
+            id="sell-1">Sell Part</button></td>
+            </td>
+            
+            <td>
+            <button onclick='
             updateData(${i})
             ' id="update">Update</button></td>
-            <td><button onclick="
-            deleteTest(${i})
-            " id="delete">Delete</button></td>
-        </tr>`;
+            </td>
+            
+            <td>
+            <button onclick="
+            sellTo(${i})
+            " id="delete${i}">Sell All Pro</button>
+            </td>
+        </tr>
+        `;
+
             // console.log(dataProduct[i].title);
         }
 
@@ -849,21 +882,33 @@ function searchData(value) {
 
         if (dataProduct2[i].title.toLowerCase().includes(value) || dataProduct2[i].title.includes(value)) {
             table2 += `
-            <tr>
-            <td>${i + 1}</td>
-            <td>${dataProduct2[i].title}</td>
-            <td>${dataProduct2[i].qty}</td>
-            <td>${dataProduct2[i].price}</td>
-           
-            <td>${dataProduct2[i].total}</td>
-            <td>${dataProduct2[i].category}</td>
-            <td><button onclick='
-            updateData(${i})
-            ' id="update">Update</button></td>
-            <td><button onclick="
-            sellItem3(${i})
-            " id="delete">Delete</button></td>
-        </tr>`;
+            <tr class="tr-container2"><tr/>
+                    <tr id=${i}>
+                    <td>${i + 1}</td>
+                    <td>${dataProduct2[i].title}</td>
+                    <td id=${'qty2' + i}>${dataProduct2[i].qty}</td>
+                    <td id=${'price2' + i}>${dataProduct2[i].price}</td>
+                    <td id=${'total2' + i}>${dataProduct2[i].total}</td>
+                    <td>${dataProduct2[i].category}</td>
+                    <td>
+                    <input type='number' id=${'sold-qty2' + i} class='sold-qty2'>
+                    </td>
+    
+                    <td>
+    
+                    <button onclick='
+                   sellOneItem2(${dataProduct2[i].qty}, ${dataProduct2[i].price}  , ${dataProduct2[i].total}  ,${i})              
+                    '
+                    id="sell-2"> Sell Part</button></td>
+                    </td>
+    
+                    <td><button onclick='
+                    updateData2(${i})
+                    ' id="update">Update</button></td>
+                    <td><button onclick="
+                    sellTo2(${i})
+                    " id="delete">Sell All Pro</button></td>
+                </tr>`;
             // console.log(dataProduct[i].title);
         }
 
@@ -876,21 +921,31 @@ function searchData(value) {
 
         if (dataProduct3[i].title.toLowerCase().includes(value) || dataProduct3[i].title.includes(value)) {
             table3 += `
-            <tr>
-            <td>${i + 1}</td>
-            <td>${dataProduct3[i].title}</td>
-            <td>${dataProduct3[i].qty}</td>
-            <td>${dataProduct3[i].price}</td>
-           
-            <td>${dataProduct3[i].total}</td>
-            <td>${dataProduct3[i].category}</td>
-            <td><button onclick='
-            updateData(${i})
-            ' id="update">Update</button></td>
-            <td><button onclick="
-            deleteTest(${i})
-            " id="delete">Delete</button></td>
-        </tr>`;
+            <tr class="tr-container3"><tr/>
+                    <tr id=${i}>
+                    <td>${i + 1}</td>
+                    <td>${dataProduct3[i].title}</td>
+                    <td id=${'qty3' + i}>${dataProduct3[i].qty}</td>
+                    <td id=${'price3' + i}>${dataProduct3[i].price}</td>
+                    <td id=${'total3' + i}>${dataProduct3[i].total}</td>
+                    <td>${dataProduct3[i].category}</td>
+                    <td>
+                    <input type='number' id=${'sold-qty3' + i} class='sold-qty3'>
+                    </td>
+                    <td>
+                    <button onclick='
+                    sellOneItem3(${dataProduct3[i].qty}, ${dataProduct3[i].price}  , ${dataProduct3[i].total}  ,${i})       
+                    '
+                    id="sell-3">Sell Part</button></td>
+                    </td>
+    
+                    <td><button onclick='
+                    updateData3(${i})
+                    ' id="update">Update</button></td>
+                    <td><button onclick="
+                    sellTo3(${i})
+                    " id="delete">Sell All Pro</button></td>
+                </tr>`;
             // console.log(dataProduct[i].title);
         }
 
