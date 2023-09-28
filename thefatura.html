@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="main.css"> -->
+    <link rel="stylesheet" href="thefatura.css">
+    <title>Invoice Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <a class="goback-btn" href="sold-product-page.html"><button onclick="clearFullInvoice()"> Go Back ... ...
+                ...</button></a>
+        <div class="invoice-header">
+            <div class="logo">
+                <img src="logo-invoice.png" alt="Logo">
+            </div>
+            <div class="invoice-details">
+                <p class="invoice-num">Invoice Number:- 000</p>
+                <p class="invoice-date">Date:- <span class="selling-date"></span></p>
+                <p class="invoice-hour">Hour:- <span class="selling-hour"></span></p>
+                <p class="the-seller">Seller:- <span class="seller">Seller</span> </p>
+            </div>
+            <div class="cst-data">
+                <p class="cst-name">Customer's Name:- <span class="the-cst-name"></span></p>
+                <p class="cst-adress">Customer's Adress:- <span class="the-cst-adress"></span></p>
+                <p class="cst-phone-num">Customer's Phone Number:- <span class="the-cst-num"></span> </p>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Category</th>
+
+
+            </tr>
+
+            <tbody id="invoice-body">
+
+            </tbody>
+        </table>
+
+        <div class="footer-section">
+            <div class="total-section">
+                <p class="total-of-totals"></p>
+
+                <!-- Discount Of Totals -->
+                <p class="discount-of-totals">
+                    <input onkeyup="applyDiscount()" type="number" class="discount-amount">
+                    <span class="after-discount">0</span>
+                </p>
+
+                <p class="discount-of-totals">
+                    <input onkeyup="applyTax()" type="number" class="tax-amount" value="0.">
+                    <span class="after-tax">0</span>
+                </p>
+
+                <p class="total-after-tax-container">
+
+                    <span class="total-after-tax">Total After Tax: 0</span>
+                </p>
+            </div>
+
+            <div class="qty-section">
+                <p class="total-qty-num">
+                </p>
+
+
+            </div>
+        </div>
+        <script src="sold-product-page.js"></script>
+        <script src="script.js"></script>
+        <script src="thefatura.js"></script>
+</body>
+
+</html>

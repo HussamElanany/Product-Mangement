@@ -335,6 +335,8 @@ function saveSoldItem(i) {
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
+    dateOnly = date.slice(0, 15)
+    hour = date.slice(15, 24)
 
     let oneSoldItem = {
         title: dataProduct[i].title,
@@ -346,6 +348,8 @@ function saveSoldItem(i) {
         firstName: testCustFirstName.value + ' ',
         lastName: testCustLasttName.value,
         phoneNum: testCustPhoneNum.value,
+        dateOnly: dateOnly,
+        hour: hour,
         getDate: getDate
     }
     soldProductpage.push(oneSoldItem)
@@ -420,6 +424,8 @@ function saveSoldItem2(i) {
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
+    dateOnly = date.slice(0, 15)
+    hour = date.slice(15, 24)
 
     let oneSoldItem2 = {
         title: dataProduct2[i].title,
@@ -431,6 +437,8 @@ function saveSoldItem2(i) {
         firstName: testCustFirstName2.value + ' ',
         lastName: testCustLasttName2.value,
         phoneNum: testCustPhoneNum2.value,
+        dateOnly: dateOnly,
+        hour: hour,
         getDate: getDate
     }
     soldProductpage2.push(oneSoldItem2)
@@ -537,6 +545,8 @@ function saveSoldItem3(i) {
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
+    dateOnly = date.slice(0, 15)
+    hour = date.slice(15, 24)
 
     let oneSoldItem3 = {
         title: dataProduct3[i].title,
@@ -548,6 +558,8 @@ function saveSoldItem3(i) {
         firstName: testCustFirstName3.value + ' ',
         lastName: testCustLasttName3.value,
         phoneNum: testCustPhoneNum3.value,
+        dateOnly: dateOnly,
+        hour: hour,
         getDate: getDate
     }
     soldProductpage3.push(oneSoldItem3)
@@ -600,6 +612,8 @@ function sellItem(i) {
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
+    dateOnly = date.slice(0, 15)
+    hour = date.slice(15, 24)
 
     custFirstName = document.querySelector('.first-name')
     custLasttName = document.querySelector('.last-name')
@@ -610,6 +624,8 @@ function sellItem(i) {
     soldProductData = dataProduct.splice(i, 1)
     soldProductpage.push({
         data: soldProductData,
+        dateOnly: dateOnly,
+        hour: hour,
         getDate: getDate,
         firstName: custFirstName.value + ' ',
         lastName: custLasttName.value,
@@ -659,6 +675,8 @@ function sellItem2(i) {
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
+    dateOnly = date.slice(0, 15)
+    hour = date.slice(15, 24)
 
 
     custFirstName2 = document.querySelector('.first-name2')
@@ -670,6 +688,8 @@ function sellItem2(i) {
     soldProductpage2.push({
         data: soldProductData2,
         getDate: getDate,
+        dateOnly: dateOnly,
+        hour: hour,
         firstName: custFirstName2.value + ' ',
         lastName: custLasttName2.value,
         phoneNum: custPhoneNum2.value
@@ -719,7 +739,8 @@ function sellItem3(i) {
     let dateFunc = new Date()
     let date = dateFunc.toString()
     getDate = date.slice(0, 25)
-
+    dateOnly = date.slice(0, 15)
+    hour = date.slice(15, 24)
 
     custFirstName3 = document.querySelector('.first-name3')
     custLasttName3 = document.querySelector('.last-name3')
@@ -730,6 +751,8 @@ function sellItem3(i) {
     soldProductData3 = dataProduct3.splice(i, 1)
     soldProductpage3.push({
         data: soldProductData3,
+        dateOnly: dateOnly,
+        hour: hour,
         getDate: getDate,
         firstName: custFirstName3.value + ' ',
         lastName: custLasttName3.value,

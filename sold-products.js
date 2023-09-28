@@ -65,9 +65,15 @@ function showSoldProductData() {
             " id="delete">Delete</button>
             </td>
 
+            <td>
+            <button onclick="
+            issueInvoice(${i})
+            "> 
+            Issue Invoice  
+            </button>
+            </td>
           
         </tr>
-      
         `
         console.log(soldProductpage);
     }
@@ -83,21 +89,21 @@ function showSoldProductData() {
         tableSoldPro2 += `
         <tr>
         <td>${i + 1}</td>
-            <td>${soldProductpage2[i].title || soldProductpage2[i].data[0].title}</td>
+        <td>${soldProductpage2[i].title || soldProductpage2[i].data[0].title}</td>
 
-            <td>${soldProductpage2[i].qty || soldProductpage2[i].data[0].qty}</td>
+        <td>${soldProductpage2[i].qty || soldProductpage2[i].data[0].qty}</td>
 
-            <td>${soldProductpage2[i].price || soldProductpage2[i].data[0].price}</td>
+        <td>${soldProductpage2[i].price || soldProductpage2[i].data[0].price}</td>
 
-            <td>${+soldProductpage2[i].price * +soldProductpage2[i].qty || +soldProductpage2[i].data[0].price * +soldProductpage2[i].data[0].qty}</td>
+        <td>${+soldProductpage2[i].price * +soldProductpage2[i].qty || soldProductpage2[i].data[0].total}</td>
 
-            <td>${soldProductpage2[i].category || soldProductpage2[i].data[0].category}</td>
+        <td>${soldProductpage2[i].category || soldProductpage2[i].data[0].category}</td>
 
-            <td>${soldProductpage2[i].firstName + ' ' + soldProductpage2[i].lastName || soldProductpage2[i].firstName + ' ' + soldProductpage2[i].lastName}</td>
+        <td>${soldProductpage2[i].firstName + ' ' + soldProductpage2[i].lastName || soldProductpage2[i].firstName + ' ' + soldProductpage2[i].lastNames}</td>
 
-            <td>${soldProductpage2[i].phoneNum || soldProductpage2[i].phoneNum}</td>
+        <td>${soldProductpage2[i].phoneNum || soldProductpage2[i].phoneNum}</td>
 
-            <td>${soldProductpage2[i].getDate || soldProductpage2[i].data[0].getDate}</td>
+        <td>${soldProductpage2[i].getDate || soldProductpage2[i].getDate}</td>
 
             <td> 
             <a href='invoice.html' style='color:black'> 
@@ -109,9 +115,21 @@ function showSoldProductData() {
             </a>
             </td>
 
-            <td><button onclick="
+            <td>
+            <button onclick="
             deleteItem2(${i})
-            " id="delete">Delete</button></td>
+            " id="delete">
+            Delete
+            </button>
+            </td>
+
+            <td>
+            <button onclick="
+            issueInvoice2(${i})
+            "> 
+            Issue Invoice  
+            </button>
+            </td>
     </tr>`
         console.log(soldProductpage2[i].title);
     }
@@ -153,9 +171,21 @@ function showSoldProductData() {
         </a>
         </td>
 
-        <td><button onclick="
+        <td>
+        <button onclick="
         deleteItem3(${i})
-        " id="delete">Delete</button></td>
+        " id="delete">
+        Delete
+        </button>
+        </td>
+
+        <td>
+            <button onclick="
+            issueInvoice3(${i})
+            "> 
+            Issue Invoice  
+            </button>
+            </td>
     </tr>
    
     `
@@ -165,6 +195,42 @@ function showSoldProductData() {
     tbody3.innerHTML = tableSoldPro3
 }
 showSoldProductData()
+
+// Issue Invoice
+
+
+function issueInvoice(i) {
+
+
+
+    if (soldProductpage[i]) {
+        fullInvoice.push(soldProductpage[i])
+    } else if (soldProductpage[i].data[0]) {
+        fullInvoice.push(soldProductpage[i].data[0])
+    }
+    localStorage.setItem('theFullInvoice', JSON.stringify(fullInvoice))
+
+}
+
+function issueInvoice2(i) {
+    if (soldProductpage2[i]) {
+        fullInvoice.push(soldProductpage2[i])
+    } else if (soldProductpage2[i].data[0]) {
+        fullInvoice.push(soldProductpage2[i].data[0])
+    }
+    localStorage.setItem('theFullInvoice', JSON.stringify(fullInvoice))
+
+}
+
+function issueInvoice3(i) {
+    if (soldProductpage3[i]) {
+        fullInvoice.push(soldProductpage3[i])
+    } else if (soldProductpage3[i].data[0]) {
+        fullInvoice.push(soldProductpage3[i].data[0])
+    }
+    localStorage.setItem('theFullInvoice', JSON.stringify(fullInvoice))
+
+}
 
 // Show Receipt
 

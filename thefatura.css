@@ -1,0 +1,68 @@
+/* Display Products */
+
+.container {
+    width: 60%;
+    margin: 30px auto;
+}
+
+.goback-btn {
+    display: block;
+    margin-bottom: 200px;
+}
+
+/* Invoice header */
+.invoice-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+.invoice-header .logo {
+    width: 100%;
+}
+
+/* Table Body */
+table {
+    width: 100%;
+    text-align: center;
+    margin: 0 0;
+    border: 1px solid black;
+}
+
+
+table th {
+    text-transform: capitalize;
+    background-color: lightskyblue;
+}
+
+th,
+td {
+    border: 1px solid black;
+    text-transform: capitalize;
+    padding: 5px;
+}
+
+/* Footer Section */
+.footer-section {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 5px auto;
+    gap: 50px;
+    border-top: 2px solid black;
+}
+
+.total-section {
+    border-right: 2px solid black;
+    padding-top: 30px;
+}
+
+.qty-section {
+    padding-top: 30px;
+}
+
+input {
+    width: 100px;
+}
